@@ -8,8 +8,11 @@
  *                     It gets calculated offset object as second argument which could be changed to affect position of dropdown;
  * - before_show - trigger before show dropdown;
  * - before_hide - trigger before hide dropdown;
- * - combo_init - trigger after init; 
+ * - combo_init - trigger after init;
  * 
+ * 
+ * @todo: 
+ * prepare documentation
  */
 ﻿(function($, undefined ) {
   var Combobox = function(element, options) {
