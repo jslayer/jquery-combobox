@@ -12,7 +12,7 @@
  * 
  * 
  * @todo: 
- * prepare documentation
+ * prepare documentation and options reference
  */
 ﻿(function($, undefined ) {
   var Combobox = function(element, options) {
