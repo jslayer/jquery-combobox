@@ -57,7 +57,7 @@
     });
     
     var _form = self.element.form;
-    if (_form.combobox_reset_processed === undefined) {
+    if (_form !== null && _form.combobox_reset_processed === undefined) {
       _form.combobox_reset_processed = true;
       $(_form).bind('reset', function(e) {
         setTimeout(function(){
