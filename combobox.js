@@ -162,8 +162,8 @@
       $('body').append(self.list);
     }
     self.element.style.position = 'absolute';
-    self.element.style.top = '-9999px';
-    self.element.style.left = '-9999px';
+    self.element.zIndex = -1;
+    self.$element.fadeTo(0, 0.01);
     
     self.$element.trigger('combo_init');
   };
