@@ -162,7 +162,7 @@
       $('body').append(self.list);
     }
     self.element.style.position = 'absolute';
-    self.element.zIndex = -1;
+    self.element.style.zIndex = -1;
     self.$element.fadeTo(0, 0.01);
     
     self.$element.trigger('combo_init');
