@@ -10,7 +10,7 @@ Basic usage is pretty simple:
 
 ##Parameters
 
-###`Options`
+###Options
 
 ####`width` and `height`
 
@@ -36,7 +36,7 @@ Basic usage is pretty simple:
 
 `bool` Enables hover feature. For performance reasons by default is `false`
 
-###`Classes`
+###Classes
 
 List of default element's CSS classes and their default values.
 
