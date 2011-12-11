@@ -12,7 +12,9 @@
  * 
  * 
  * @todo: 
- * prepare documentation and options reference
+ * - prepare documentation and options reference
+ * - somehow handle mobile devices
+ * - add theme support
  */
 ﻿(function($, undefined ) {
   var Combobox = function(element, options) {
