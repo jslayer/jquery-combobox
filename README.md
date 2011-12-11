@@ -4,7 +4,7 @@ Yet another combobox plugin. Were developed for my own purposes and successfully
 
 ##Usage
 
-Basic usage is pretty simple:
+Basic usage:
 
     $('select').combobox([{options}], [{classes}]);
 
