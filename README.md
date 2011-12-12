@@ -54,3 +54,19 @@ List of default element's CSS classes and their default values.
 * `wrapHover` - `combo-wrapper-hover`
 * `wrapActive` - `combo-wrapper-active`
 * `listLong` - `combo-list-long`
+
+##Events
+
+You can bind several event handlers to the source (select) element, to catch some usefull events.
+
+###`before_show` and `before_hide`
+
+Called before show/hide dropdown.
+
+###`combo_init`
+
+Combobox init event.
+
+###`update_position`
+
+Called just before update the position of the dropdown. This even received offset object, so you can easily change the dropdown position.
