@@ -12,7 +12,6 @@
  * 
  * 
  * @todo: 
- * - prepare documentation and options reference
  * - somehow handle mobile devices
  * - add theme support
  */
@@ -97,7 +96,13 @@
           }
           self.show();
         }
+        self.$element.focus();
         return false;
+      });
+    }
+    else {
+      self.list.bind('click', function(e) {
+        self.$element.focus();
       });
     }
     

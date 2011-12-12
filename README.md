@@ -2,6 +2,10 @@
 
 Yet another combobox plugin. Were developed for my own purposes and successfully used in many projects.
 
+##Features
+
+* works with jQuery 1.3.2+
+
 ##Usage
 
 Basic usage:
@@ -69,4 +73,4 @@ Combobox init event.
 
 ###`update_position`
 
-Called just before update the position of the dropdown. This even received offset object, so you can easily change the dropdown position.
+Called just before update the position of the dropdown. This even receive offset object, so you can easily change the dropdown position.
