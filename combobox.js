@@ -14,6 +14,7 @@
  * @todo: 
  * - somehow handle mobile devices
  * - add theme support
+ * - add adjustWidth overview in readme
  */
 ﻿(function($, undefined ) {
   var Combobox = function(element, options) {
@@ -122,8 +123,15 @@
     self.height = (self.options.height ? self.options.height : self.$element.outerHeight());
     self.btnWidth = (self.options.btnWidth);
     
-    if (self.options.adjustWidth && self.options.btnWidth > 20) {
-      self.width = self.width + self.options.btnWidth - 20;
+    if (self.options.adjustWidth && self.btnWidth > 20) {
+      switch(typeof(self.options.adjustWidth)) {
+        case 'boolean':
+          self.width = self.width + self.options.btnWidth - 20;
+          break;
+        case 'number':
+          self.width = self.width + self.options.adjustWidth;
+          break;
+      }
     }
     
     var display = $.browser.msie && $.browser.version.match(/^\d+/)[0] < 8 ? 'inline' : 'inline-block';
