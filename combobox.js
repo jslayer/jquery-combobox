@@ -1,5 +1,5 @@
 ﻿/*
- * jQuery Combobox Plugin 1.0b2
+ * jQuery Combobox Plugin 1.0b3
  * Copyright 2011 Eugene Poltorakov (http://poltorakov.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * 
@@ -122,6 +122,10 @@
     self.height = (self.options.height ? self.options.height : self.$element.outerHeight());
     self.btnWidth = (self.options.btnWidth);
     
+    if (self.options.adjustWidth && self.options.btnWidth > 20) {
+      self.width = self.width + self.options.btnWidth - 20;
+    }
+    
     var display = $.browser.msie && $.browser.version.match(/^\d+/)[0] < 8 ? 'inline' : 'inline-block';
     
     if (!self.multiple) {
@@ -170,7 +174,11 @@
     }
     self.element.style.position = 'absolute';
     self.element.style.zIndex = -1;
-    self.$element.fadeTo(0, 0.01);
+    self.$element.css({
+      width: 0,
+      height: 0,
+      opacity : 0.01
+    });
     
     self.$element.trigger('combo_init');
   };
@@ -193,7 +201,8 @@
       hideSelected: false,
       listMaxHeight: false,
       hoverEnabled: false,
-      forceScroll: false
+      forceScroll: false,
+      adjustWidth: true
     },
     default_classes: {
       wrapper: 'combo-wrapper',
