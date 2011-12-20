@@ -291,14 +291,24 @@
       });
       
       if (self.options.hoverEnabled) {
-        $children.hover(function() {
-          $(this).addClass(self.options.classes.itemHover);
-        }, function(){
-          $(this).removeClass(self.options.classes.itemHover);
+        self.list.mouseenter(function(e){
+          if(this.mouseenter_inited === true) {
+            return;
+          }
+          this.mouseenter_inited = true;
+          
+          $children.hover(function() {
+            $(this).addClass(self.options.classes.itemHover);
+          }, function(){
+            $(this).removeClass(self.options.classes.itemHover);
+          });
         });
       }
       
-      $children.click(function() {
+      self.list.click(function(e) {
+        if (e.target.nodeName != 'LI') {
+          return;
+        }
         if (self.isDisabled()) {
           return false
         }
@@ -308,11 +318,11 @@
           children.filter(':selected').attr('selected', null);
         }
         
-        if (self.multiple && Combobox.isCTRL && children.get(this.combobox_index).selected == true) {
-          children.get(this.combobox_index).selected = false;
+        if (self.multiple && Combobox.isCTRL && children.get(e.target.combobox_index).selected == true) {
+          children.get(e.target.combobox_index).selected = false;
         }
         else {
-          children.get(this.combobox_index).selected = true;
+          children.get(e.target.combobox_index).selected = true;
         }
         
         self.$element.change();
