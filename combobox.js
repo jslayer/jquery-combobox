@@ -210,23 +210,24 @@
       listMaxHeight: false,
       hoverEnabled: false,
       forceScroll: false,
-      adjustWidth: true
+      adjustWidth: true,
+      theme: 'combo'
     },
     default_classes: {
-      wrapper: 'combo-wrapper',
-      focus: 'combo-focus',
-      disabled: 'combo-disabled',
-      multiple: 'combo-multiple',
-      button: 'combo-button',
-      group: 'combo-group',
-      groupLabel: 'combo-group-label',
-      list: 'combo-list',
-      selected: 'combo-selected',
-      itemHover: 'combo-item-hover',
-      itemActive: 'combo-item-active', 
-      wrapHover: 'combo-wrapper-hover',
-      wrapActive: 'combo-wrapper-active',
-      listLong : 'combo-list-long'
+      wrapper: 'wrapper',
+      focus: 'focus',
+      disabled: 'disabled',
+      multiple: 'multiple',
+      button: 'button',
+      group: 'group',
+      groupLabel: 'group-label',
+      list: 'list',
+      selected: 'selected',
+      itemHover: 'item-hover',
+      itemActive: 'item-active', 
+      wrapHover: 'wrapper-hover',
+      wrapActive: 'wrapper-active',
+      listLong : 'list-long'
     },
     rebuild: function() {
       var self = this,
@@ -553,6 +554,10 @@
   $.fn.combobox = function(options, classes) {
     options = $.extend({}, Combobox.prototype.default_options, options);
     options.classes = $.extend({}, Combobox.prototype.default_classes, classes);
+    //prepare classes
+    $.each(options.classes, function(i,v) {
+      options.classes[i] = options.theme + '-' + v;
+    });
     
     return this.each(function() {
       var c = new Combobox(this, options);
