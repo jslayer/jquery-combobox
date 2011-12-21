@@ -13,8 +13,7 @@
  * 
  * @todo: 
  * - somehow handle mobile devices
- * - add theme support
- * - add adjustWidth overview in readme
+ * - add adjustWidth & basic theme support overview in readme
  */
 ﻿(function($, undefined ) {
   var Combobox = function(element, options) {
