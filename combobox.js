@@ -522,8 +522,9 @@
       if (window.getSelection) {
         window.getSelection().removeAllRanges();
       }
-      else if (document.selection) {
-        document.selection.empty();
+      else if (document.selection && document.selection.type != 'None') {
+        //todo - error could appear here (on ie8+)
+        try {document.selection.empty();} catch(e) {}
       }
     },
     focus: function() {
