@@ -63,7 +63,7 @@
       $(_form).bind('reset', function(e) {
         setTimeout(function(){
           $.each(_form.elements, function() {
-            if (this.tagName == 'SELECT') {
+            if (this.tagName == 'SELECT' && typeof(this.combobox) != 'undefined') {
               this.combobox.updateSelected();
             }
           });
