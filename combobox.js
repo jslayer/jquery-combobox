@@ -110,7 +110,7 @@
       self.wrapper.hover(function() {
         self.wrapper.addClass(self.options.classes.wrapHover);
       }, function() {
-        //@todo - check lines above - it could be problems here (class will not remove)
+        //todo - check lines above - it could be problems here (class will not remove)
         if (!self.blocked && !self.state) {
           self.wrapper.removeClass(self.options.classes.wrapHover);
         }
