@@ -28,6 +28,19 @@
        listMaxHeight: 134,
        forceScroll: true
      });
+     
+     $('#select-dynamic').combobox({
+       width: 250
+     });
+     
+     $('#dynamic-select-update').click(function() {
+       var $select = $('#select-dynamic');
+           option = '<option value="' + $select.children().length + '">' + $select.children().length + '</option>';
+       
+       $select.html($select.html() + option);
+       
+       $select.get(0).combobox.rebuild();
+     });
 	 });
 	</script>
 </head>
@@ -138,6 +151,11 @@
     
     <input type="submit" />
     <input type="reset" />
+    
+    
+    <select name="dynamic" id="select-dynamic"></select>
+    <input id="dynamic-select-update" type="button" value="Add">
+    
   </form>
 </body>
 </html>
