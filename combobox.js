@@ -11,7 +11,7 @@
  * - combo_init - trigger after init;
  * 
  * 
- * @todo: 
+ * todo: 
  * - somehow handle mobile devices
  * - add adjustWidth & basic theme support overview in readme
  */
