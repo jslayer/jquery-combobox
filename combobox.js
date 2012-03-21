@@ -481,7 +481,7 @@
       self.wrapper.removeClass(self.options.classes.wrapActive);
       
       if (self.options.hoverEnabled) {
-        //@todo - this class probably shouldn't remove here
+        //todo - this class probably shouldn't remove here
         self.wrapper.removeClass(self.options.classes.wrapHover);
       }
       
