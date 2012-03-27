@@ -14,6 +14,7 @@
  * @todo: 
  * - somehow handle mobile devices
  * - add adjustWidth & basic theme support overview in readme
+ * - make multiselect widget using checkboxes
  */
 ﻿(function($, undefined ) {
   var Combobox = function(element, options) {
