@@ -11,7 +11,7 @@
  * - combo_init - trigger after init;
  * 
  * 
- * @todo: 
+ * todo: 
  * - somehow handle mobile devices
  * - add adjustWidth & basic theme support overview in readme
  * - make multiselect widget using checkboxes
@@ -482,7 +482,7 @@
       self.wrapper.removeClass(self.options.classes.wrapActive);
       
       if (self.options.hoverEnabled) {
-        //@todo - this class probably shouldn't remove here
+        //todo - this class probably shouldn't remove here
         self.wrapper.removeClass(self.options.classes.wrapHover);
       }
       
