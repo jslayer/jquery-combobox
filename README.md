@@ -63,7 +63,7 @@ List of default element's CSS classes suffixes and their default values.
 * `wrapActive` - `wrapper-active`
 * `listLong` - `list-long`
 
-The applyed css classes will be prepared from theme_name-suffix_name
+The applyed css classes will be prepared from `theme_name-suffix_name`
 
 ##Events
 
