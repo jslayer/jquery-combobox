@@ -40,24 +40,30 @@ Basic usage:
 
 `bool` Enables hover feature. For performance reasons by default is `false`
 
+####`theme`
+
+`string` Set the "theme" prefix - it will be used in CSS classes for generated elements. Defaults is `combo`
+
 ###Classes
 
-List of default element's CSS classes and their default values.
+List of default element's CSS classes suffixes and their default values.
 
-* `wrapper` - `combo-wrapper`
-* `focus` - `combo-focus`
-* `disabled` - `combo-disabled`
-* `multiple` - `combo-multiple`
-* `button` - `combo-button`
-* `group` - `combo-group`
-* `groupLabel` - `combo-group-label`
-* `list` - `combo-list`
-* `selected` - `combo-selected`
-* `itemHover` - `combo-item-hover`
-* `itemActive` - `combo-item-active` 
-* `wrapHover` - `combo-wrapper-hover`
-* `wrapActive` - `combo-wrapper-active`
-* `listLong` - `combo-list-long`
+* `wrapper` - `wrapper`
+* `focus` - `focus`
+* `disabled` - `disabled`
+* `multiple` - `multiple`
+* `button` - `button`
+* `group` - `group`
+* `groupLabel` - `group-label`
+* `list` - `list`
+* `selected` - `selected`
+* `itemHover` - `item-hover`
+* `itemActive` - `item-active` 
+* `wrapHover` - `wrapper-hover`
+* `wrapActive` - `wrapper-active`
+* `listLong` - `list-long`
+
+The applyed css classes will be prepared from theme_name-suffix_name
 
 ##Events
 
