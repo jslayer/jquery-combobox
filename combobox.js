@@ -183,10 +183,13 @@
     self.element.style.position = 'absolute';
     self.element.style.zIndex = -1;
     self.$element.css({
-      width: 0,
-      height: 0,
-      opacity : 0.01
+      width: '1px',
+      height: '1px',
+      opacity : 0.01,
+      borderWidth: 0
     });
+
+    self.$element.find('*').hide();
     
     self.$element.trigger('combo_init');
   };
