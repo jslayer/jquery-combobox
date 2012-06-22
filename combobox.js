@@ -1,5 +1,5 @@
 ﻿/*
- * jQuery Combobox Plugin 1.0b4
+ * jQuery Combobox Plugin 1.0b5
  * Copyright 2011 Eugene Poltorakov (http://poltorakov.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * 
@@ -183,11 +183,11 @@
     self.element.style.position = 'absolute';
     self.element.style.zIndex = -1;
     self.$element.css({
-      width: '1px',
-      height: '1px',
+      width: self.width,
+      height: self.height,
       opacity : 0.01,
       borderWidth: 0
-    });
+    }).addClass(self.options.classes.elementProcessed);
 
     self.$element.find('*').hide();
     
@@ -230,7 +230,8 @@
       itemActive: 'item-active', 
       wrapHover: 'wrapper-hover',
       wrapActive: 'wrapper-active',
-      listLong : 'list-long'
+      listLong : 'list-long',
+      elementProcessed: 'element-processed'
     },
     rebuild: function() {
       var self = this,
