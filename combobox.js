@@ -1,5 +1,5 @@
 ﻿/*
- * jQuery Combobox Plugin 1.0b5
+ * jQuery Combobox Plugin 1.0b6
  * Copyright 2011 Eugene Poltorakov (http://poltorakov.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * 
@@ -15,8 +15,11 @@
  * - somehow handle mobile devices
  * - add adjustWidth & basic theme support overview in readme
  * - make multiselect widget using checkboxes
+ * - remake tab action
+ * - use event namespace
+ * - mobile version ?
  */
-﻿(function($, undefined ) {
+(function($, undefined ) {
   var Combobox = function(element, options) {
     var self = this,
         $element = $(element),
@@ -49,7 +52,7 @@
       self.focus();
     }).bind('blur', function(e) {
       self.blur();
-    }).bind('keyup', function(e){
+    }).bind('keypress', function(e){
       switch(e.which) {
         case 38:
         case 40:
@@ -99,11 +102,56 @@
         }
         self.$element.focus();
         return false;
+      }).bind('keydown', function(e){
+        var $options = self.$element.find('option'),
+            index = $options.index($options.filter(':selected'));
+        switch(e.which) {
+          case 38:
+            if (index > 0) {
+              $options.eq(index - 1).attr('selected', 'selected');
+              self.$element.change();
+            }
+            break;
+          case 40:
+            if (index < $options.length) {
+              $options.eq(index + 1).attr('selected', 'selected');
+              self.$element.change();
+            }
+            break;
+        }
+      }).bind('focus', function(e){//TODO
+         self.focus();
+      }).bind('blur', function(e){
+         self.blur();
       });
     }
     else {
-      self.list.bind('click', function(e) {
-        self.$element.focus();
+      self.list.bind('keydown', function(e){
+        var $options = self.$element.find('option'),
+            ctrl  = e.ctrlKey || e.metaKey,
+            index;
+        switch(e.which) {
+          case 38:
+            index = $options.index($options.filter(':selected').first());
+            index = index == -1 ? 1 : index;
+            index = (index > $options.length - 1) ? $options.length - 1 : index;
+            if (!ctrl) {
+              $options.attr('selected', null);
+            }
+            $options.eq(index - 1).attr('selected', 'selected');
+            self.$element.change();
+            break;
+          case 40:
+            index = $options.index($options.filter(':selected').last());
+            index = index == -1 ? -1 : index;
+            index = (index >= $options.length - 1) ? -1 : index;
+            if (!ctrl) {
+              $options.attr('selected', null);
+            }
+            $options.eq(index + 1).attr('selected', 'selected');
+            self.$element.change();
+            break;
+        }
       });
     }
     
@@ -141,7 +189,7 @@
         display: display,
         width: self.width,
         height: self.height
-      });
+      }).attr('tabindex', 0);
       self.button.css({
         width: self.btnWidth,
         height: self.height,
@@ -160,6 +208,7 @@
     else {
       self._list.style.display = display;
       self._list.style.width = self.width + 'px';
+      self.list.attr('tabindex', 0);
     }
     
     if (!self.multiple) {
@@ -180,18 +229,7 @@
       self._list.style.display = 'none';
       $('body').append(self.list);
     }
-    self.element.style.position = 'absolute';
-    self.element.style.zIndex = -1;
-    self.$element.css({
-      width: self.width,
-      height: self.height,
-      opacity : 0.01,
-      borderWidth: 0
-    }).addClass(self.options.classes.elementProcessed);
-
-    self.$element.find('*').hide();
-    
-    self.$element.trigger('combo_init');
+    self.$element.hide().trigger('combo_init');
   };
   
   $.extend(Combobox.prototype, {
@@ -201,7 +239,6 @@
     value: null,
     disabled: false,
     multiple: false,
-    isCTRL: false,
     groups: false,
     default_options: {
       width: false,
@@ -230,8 +267,7 @@
       itemActive: 'item-active', 
       wrapHover: 'wrapper-hover',
       wrapActive: 'wrapper-active',
-      listLong : 'list-long',
-      elementProcessed: 'element-processed'
+      listLong : 'list-long'
     },
     rebuild: function() {
       var self = this,
@@ -311,6 +347,8 @@
       }
       
       self.list.click(function(e) {
+        var isCtrl = e.ctrlKey || e.metaKey;
+
         if (e.target.nodeName != 'LI') {
           return;
         }
@@ -318,15 +356,30 @@
           return false
         }
         var children = self.$element.find('option');
-        
-        if (!self.multiple || !Combobox.isCTRL) {
-          children.filter(':selected').attr('selected', null);
+
+        if (self.multiple && isCtrl) {
+          if (children.get(e.target.combobox_index).selected == true) {
+            children.get(e.target.combobox_index).selected = false;
+          }
+          else {
+            children.get(e.target.combobox_index).selected = true;
+          }
         }
-        
-        if (self.multiple && Combobox.isCTRL && children.get(e.target.combobox_index).selected == true) {
-          children.get(e.target.combobox_index).selected = false;
+        else if (self.multiple && e.shiftKey) {
+          var $selected = children.filter(':selected'),
+              firstIndex = children.index($selected.first()),
+              index = e.target.combobox_index;
+
+          firstIndex = firstIndex == -1 ? 0 : firstIndex;
+
+          if (firstIndex > index) {
+            index = firstIndex;
+            firstIndex = e.target.combobox_index;
+          }
+          children.attr('selected', false).slice(firstIndex, index + 1).attr('selected', 'selected');
         }
         else {
+          children.filter(':selected').attr('selected', null);
           children.get(e.target.combobox_index).selected = true;
         }
         
@@ -549,13 +602,7 @@
       }
     }
   });
-  
-  $(document).keyup(function(e) {
-    if(e.which == 17) Combobox.isCTRL = false;
-  }).keydown(function(e) {
-    if(e.which == 17) Combobox.isCTRL = true;
-  });
-  
+
   $.fn.combobox = function(options, classes) {
     options = $.extend({}, Combobox.prototype.default_options, options);
     options.classes = $.extend({}, Combobox.prototype.default_classes, classes);
