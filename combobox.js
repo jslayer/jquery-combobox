@@ -1,5 +1,5 @@
 ﻿/*
- * jQuery Combobox Plugin 1.0b6
+ * jQuery Combobox Plugin 1.0b7
  * Copyright 2011 Eugene Poltorakov (http://poltorakov.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * 
@@ -100,7 +100,7 @@
           }
           self.show();
         }
-        self.$element.focus();
+        self.focus();
         return false;
       }).bind('keydown', function(e){
         var $options = self.$element.find('option'),
@@ -353,7 +353,7 @@
           return;
         }
         if (self.isDisabled()) {
-          return false
+          return false;
         }
         var children = self.$element.find('option');
 
@@ -378,9 +378,12 @@
           }
           children.attr('selected', false).slice(firstIndex, index + 1).attr('selected', 'selected');
         }
-        else {
+        else if (self.multiple){
           children.filter(':selected').attr('selected', null);
-          children.get(e.target.combobox_index).selected = true;
+          children.eq(e.target.combobox_index).attr('selected', 'selected');
+        }
+        else {
+          children.eq(e.target.combobox_index).attr('selected', 'selected');
         }
         
         self.$element.change();

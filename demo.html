@@ -41,12 +41,16 @@
        
        $select.get(0).combobox.rebuild();
      });
+      $('#edit-submitted-prefix').combobox().change(function() {});
 	 });
 	</script>
 </head>
 <body>
   <form action="post.php" method="post">
     <input type="text" value="Lorem" ipsum="" />
+
+    <select id="edit-submitted-prefix" name="prefix" class="form-select"><option value="Mr">Mr</option><option value="Mme">Mme</option><option value="Mlle">Mlle</option></select>
+
   	<select name="select-1" id="select1" zdisabled="disabled">
   	  <option value='123'>Lorem</option>
   	  <option>Ipsum</option>
