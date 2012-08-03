@@ -78,7 +78,7 @@
     if (!self.multiple) {
       self.wrapper.bind('click', function(e) {
         if (self.isDisabled()) {
-          return false
+          return false;
         }
         if (self.blocked) {
           return false;
@@ -561,7 +561,8 @@
       return self;
     },
     isDisabled: function() {
-      return this.$element.attr('disabled') == 'disabled' ? true : false;
+      var dValue = this.$element.attr('disabled');
+      return (dValue === 'disabled' || dValue == true) ? true : false;
     },
     updateDisabled: function() {
       var self = this;
