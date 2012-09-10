@@ -240,6 +240,9 @@
     disabled: false,
     multiple: false,
     groups: false,
+    filter: function(name, value) {
+      return value;
+    },
     default_options: {
       width: false,
       height: false,
@@ -398,11 +401,13 @@
     },
     updateSelected: function() {
       var self = this,
-          $children = !self.groups ? self.list.find('li') : self.list.find('li').not('.' + self.options.classes.groupLabel).not('.' + self.options.classes.group),
-          $selected = self.$element.find('option').filter(':selected');
+        $children = !self.groups ? self.list.find('li') : self.list.find('li').not('.' + self.options.classes.groupLabel).not('.' + self.options.classes.group),
+        $selected = self.$element.find('option').filter(':selected'),
+        selectedText;
       
       if (!self.multiple) {
-        self.selected.text($selected.text());
+        selectedText = $selected.text();
+        self.selected.text(typeof self.options.filter == 'function' ? self.options.filter('selected', selectedText) : selectedText);
       }
       
       $children.filter('.' + self.options.classes.itemActive).removeClass(self.options.classes.itemActive);

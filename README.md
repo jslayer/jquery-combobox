@@ -44,6 +44,14 @@ Basic usage:
 
 `string` Set the "theme" prefix - it will be used in CSS classes for generated elements. Defaults is `combo`
 
+####`filter`
+
+`function` You can setup your own content filter; This callback accept name of the filter and the initial value;
+Than you should return this or modified value;
+
+Supported filters:
+* `selected` - The text of the selected box.
+
 ###Classes
 
 List of default element's CSS classes suffixes and their default values.

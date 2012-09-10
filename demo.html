@@ -9,10 +9,20 @@
 	<script src="combobox.js"></script>
 	<script>
 	 $(function() {
+     $('.themed').combobox();
+
 	   $('#select1').combobox();
 	   $('#select2').combobox({
 	     listMaxHeight: 180,
-	     forceScroll: true/*,
+	     forceScroll: true,
+       filter: function(name, value) {
+         switch (name) {
+           case 'selected':
+             value = '-- ' + value;
+             break;
+         }
+         return value;
+       }/*,
 	     hideSelected: true*/
 	   });
      $('#select3').combobox({});
@@ -159,7 +169,59 @@
     
     <select name="dynamic" id="select-dynamic"></select>
     <input id="dynamic-select-update" type="button" value="Add">
-    
+    <!-- ////////////////////////////////// --->
+    <div class="theme-green block-1">
+      <div class="theme-blue block-2">
+        <select name="" id="" class="themed">
+          <option value="1">TEST</option>
+        </select>
+      </div>
+    </div>
+    <div class="theme-pink block-3">
+      <select name="" id="" class="themed">
+        <option value="1">TEST</option>
+      </select>
+
+      <div class="theme-red theme-blue block-4">
+        <select name="" id="" class="themed">
+          <option value="1">TEST</option>
+        </select>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function(){
+        $('select').each(function() {
+          var list, $parents, themeStack = [ ];
+
+          if (!this.combobox) {
+            return;
+          }
+
+          $parents = $(this).parents();
+
+          $parents.each(function() {
+            var matches = this.className.match(/theme\-\w+/g);
+
+            if (matches) {
+              $.each(matches.reverse(), function(i, c) {
+                themeStack.unshift(c);
+              });
+            }
+          });
+
+          if (themeStack.length == 0) {
+            return;
+          }
+
+          list = this.combobox.list;
+
+          $.each(themeStack, function(i, className) {
+            list.addClass(className);
+          });
+        });
+      });
+    </script>
+
   </form>
 </body>
 </html>
