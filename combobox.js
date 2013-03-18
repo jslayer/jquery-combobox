@@ -182,11 +182,9 @@
       }
     }
     
-    var display = $.browser.msie && $.browser.version.match(/^\d+/)[0] < 8 ? 'inline' : 'inline-block';
-    
     if (!self.multiple) {
       self.wrapper.css({
-        display: display,
+        display: 'inline-block',
         width: self.width,
         height: self.height
       }).attr('tabindex', 0);
@@ -206,7 +204,7 @@
       });
     }
     else {
-      self._list.style.display = display;
+      self._list.style.display = 'inline-block';
       self._list.style.width = self.width + 'px';
       self.list.attr('tabindex', 0);
     }
