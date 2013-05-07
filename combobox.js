@@ -108,13 +108,13 @@
         switch(e.which) {
           case 38:
             if (index > 0) {
-              $options.eq(index - 1).attr('selected', 'selected');
+              $options.eq(index - 1).prop('selected', 'selected');
               self.$element.change();
             }
             break;
           case 40:
             if (index < $options.length) {
-              $options.eq(index + 1).attr('selected', 'selected');
+              $options.eq(index + 1).prop('selected', 'selected');
               self.$element.change();
             }
             break;
@@ -136,9 +136,9 @@
             index = index == -1 ? 1 : index;
             index = (index > $options.length - 1) ? $options.length - 1 : index;
             if (!ctrl) {
-              $options.attr('selected', null);
+              $options.prop('selected', null);
             }
-            $options.eq(index - 1).attr('selected', 'selected');
+            $options.eq(index - 1).prop('selected', 'selected');
             self.$element.change();
             break;
           case 40:
@@ -146,9 +146,9 @@
             index = index == -1 ? -1 : index;
             index = (index >= $options.length - 1) ? -1 : index;
             if (!ctrl) {
-              $options.attr('selected', null);
+              $options.prop('selected', null);
             }
-            $options.eq(index + 1).attr('selected', 'selected');
+            $options.eq(index + 1).prop('selected', 'selected');
             self.$element.change();
             break;
         }
@@ -187,7 +187,7 @@
         display: 'inline-block',
         width: self.width,
         height: self.height
-      }).attr('tabindex', 0);
+      }).prop('tabindex', 0);
       self.button.css({
         width: self.btnWidth,
         height: self.height,
@@ -206,7 +206,7 @@
     else {
       self._list.style.display = 'inline-block';
       self._list.style.width = self.width + 'px';
-      self.list.attr('tabindex', 0);
+      self.list.prop('tabindex', 0);
     }
     
     if (!self.multiple) {
@@ -294,7 +294,7 @@
               
               //if group have options
               if ($options.length > 0) {
-                var label = $optgroup.attr('label');
+                var label = $optgroup.prop('label');
                 if (label != undefined) {
                   _html += '<li class="'+ self.options.classes.groupLabel +'">' + label + '</li>';
                 }
@@ -339,9 +339,9 @@
           }
           this.mouseenter_inited = true;
           
-          $children.hover(function() {
+          $children.mouseover(function() {
             $(this).addClass(self.options.classes.itemHover);
-          }, function(){
+          }).mouseout(function(){
             $(this).removeClass(self.options.classes.itemHover);
           });
         });
@@ -377,14 +377,14 @@
             index = firstIndex;
             firstIndex = e.target.combobox_index;
           }
-          children.attr('selected', false).slice(firstIndex, index + 1).attr('selected', 'selected');
+          children.prop('selected', null).slice(firstIndex, index + 1).prop('selected', 'selected');
         }
         else if (self.multiple){
-          children.filter(':selected').attr('selected', null);
-          children.eq(e.target.combobox_index).attr('selected', 'selected');
+          children.filter(':selected').prop('selected', null);
+          children.eq(e.target.combobox_index).prop('selected', 'selected');
         }
         else {
-          children.eq(e.target.combobox_index).attr('selected', 'selected');
+          children.eq(e.target.combobox_index).prop('selected', 'selected');
         }
         
         self.$element.change();
@@ -402,7 +402,9 @@
         $children = !self.groups ? self.list.find('li') : self.list.find('li').not('.' + self.options.classes.groupLabel).not('.' + self.options.classes.group),
         $selected = self.$element.find('option').filter(':selected'),
         selectedText;
-      
+
+      //debugger;
+
       if (!self.multiple) {
         selectedText = $selected.text();
         self.selected.text(typeof self.options.filter == 'function' ? self.options.filter('selected', selectedText) : selectedText);
@@ -422,7 +424,7 @@
           });
         }
         else {
-          self.value = $selected.attr('value');
+          self.value = $selected.prop('value');
           $children.eq($selected.get(0).index).addClass(self.options.classes.itemActive);
         }
       }
@@ -564,7 +566,7 @@
       return self;
     },
     isDisabled: function() {
-      var dValue = this.$element.attr('disabled');
+      var dValue = this.$element.prop('disabled');
       return (dValue === 'disabled' || dValue == true) ? true : false;
     },
     updateDisabled: function() {
