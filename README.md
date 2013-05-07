@@ -4,7 +4,7 @@ Yet another combobox plugin. Were developed for my own purposes and successfully
 
 ##Features
 
-* works with jQuery 1.3.2+
+* works with jQuery 1.9+
 
 ##Usage
 
