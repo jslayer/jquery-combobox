@@ -6,6 +6,14 @@ Yet another combobox plugin. Were developed for my own purposes and successfully
 
 * works with jQuery 1.8+
 
+##Quick start
+
+Three options are available:
+
+* [Download the latest release][release]
+* Clone the repo: `git clone git@github.com:jslayer/jquery-combobox.git`
+* Install with [Bower][bower]: `bower install jquery-combobox`
+
 ##Usage
 
 Basic usage:
@@ -88,3 +96,6 @@ Combobox init event.
 ###`update_position`
 
 Called just before update the position of the dropdown. This even receive offset object, so you can easily change the dropdown position.
+
+[release]:https://github.com/jslayer/jquery-combobox/zipball/master
+[bower]:http://bower.io/
