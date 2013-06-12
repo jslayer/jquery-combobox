@@ -1,5 +1,5 @@
 ﻿/*
- * jQuery Combobox Plugin 1.0b9
+ * jQuery Combobox Plugin 1.1.0
  * Copyright 2011 Eugene Poltorakov (http://poltorakov.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * 
