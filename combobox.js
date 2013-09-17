@@ -1,5 +1,5 @@
 ﻿/*
- * jQuery Combobox Plugin 1.1.0
+ * jQuery Combobox Plugin 1.1.1
  * Copyright 2011 Eugene Poltorakov (http://poltorakov.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * 
@@ -48,6 +48,8 @@
     //bind select events
     self.$element.bind('change', function(e) {
       self.updateSelected();
+      // also check if select was disabled or enabled
+      self.updateDisabled();
     }).bind('focus', function(e) {
       self.focus();
     }).bind('blur', function(e) {
