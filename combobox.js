@@ -1,5 +1,5 @@
 ﻿/*
- * jQuery Combobox Plugin 1.1.1
+ * jQuery Combobox Plugin 1.1.2
  * Copyright 2011 Eugene Poltorakov (http://poltorakov.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  * 
@@ -569,7 +569,8 @@
     },
     isDisabled: function() {
       var dValue = this.$element.prop('disabled');
-      return (dValue === 'disabled' || dValue == true) ? true : false;
+      var roValue = this.$element.attr('readonly');
+      return !!((dValue === 'disabled' || dValue == true) || (roValue === 'readonly' || roValue == true));
     },
     updateDisabled: function() {
       var self = this;
